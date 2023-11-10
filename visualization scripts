@@ -1,0 +1,30 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Setting style for the plots
+sns.set(style="whitegrid")
+
+# Creating plots
+fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(15, 10))
+
+# Box plot for fee amounts
+sns.boxplot(data=data[['fee_amt_min', 'fee_amt_max', 'fee_amt_fixed']], ax=axs[0, 0])
+axs[0, 0].set_title('Box Plot of Fee Amounts')
+axs[0, 0].set_ylabel('Amount in Dollars')
+axs[0, 0].set_xlabel('Fee Type')
+
+# Bar plot for mean fee amounts
+mean_fee_amounts = data[['fee_amt_min', 'fee_amt_max', 'fee_amt_fixed']].mean()
+mean_fee_amounts.plot(kind='bar', ax=axs[0, 1])
+axs[0, 1].set_title('Average Fee Amounts')
+axs[0, 1].set_ylabel('Average Amount in Dollars')
+axs[0, 1].set_xlabel('Fee Type')
+
+# Pie chart for fee types
+fee_type_counts.plot(kind='pie', ax=axs[1, 0], autopct='%1.1f%%', startangle=140)
+axs[1, 0].set_title('Proportion of Different Fee Types')
+axs[1, 0].set_ylabel('')
+
+# Adjust layout and save the figure
+plt.tight_layout()
+plt.savefig('fee_analysis_visualizations.pdf')
