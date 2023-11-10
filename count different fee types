@@ -1,0 +1,3 @@
+# Counting different fee types
+fee_type_counts = data['fee_type'].value_counts()
+print(fee_type_counts)
